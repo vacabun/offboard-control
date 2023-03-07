@@ -1,0 +1,8 @@
+build/
+install/
+log/
+
+src/mavros
+src/mavlink
+
+
