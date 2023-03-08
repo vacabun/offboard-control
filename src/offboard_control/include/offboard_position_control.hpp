@@ -26,6 +26,12 @@ private:
     rclcpp::TimerBase::SharedPtr timer_;
     std::shared_ptr<mavros_msgs::srv::SetMode::Request> offb_set_mode_request;
     std::shared_ptr<mavros_msgs::srv::CommandBool::Request> arm_cmd_request;
+
+    double air_line_initial_angle;
+    double air_line_dt;
+    double air_line_angle;
+    double air_line_radius;
+    double air_line_angular_velocity;
 };
 
 #endif

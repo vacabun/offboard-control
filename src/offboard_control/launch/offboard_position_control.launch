@@ -1,0 +1,17 @@
+<launch>
+    <arg name="namespace" default="offboard_position_control_node" />
+
+    <arg name="air_line_dt" default= "0.02" />
+    <arg name="air_line_initial_angle" default= "0.00" />
+    <arg name="air_line_radius" default= "2.00" />
+    <arg name="air_line_angular_velocity" default= "1.00" />
+    <arg name="subscribe_namespace" default= "/mavros" />
+
+	<node pkg="offboard_control" exec="offboard_position_control" namespace="$(var namespace)" output="screen">
+		<param name="air_line_dt" value="$(var air_line_dt)" />
+        <param name="air_line_initial_angle" value="$(var air_line_initial_angle)" />
+        <param name="air_line_radius" value="$(var air_line_radius)" />
+        <param name="air_line_angular_velocity" value="$(var air_line_angular_velocity)" />
+        <param name="subscribe_namespace" value="$(var subscribe_namespace)" />
+	</node>
+</launch>
