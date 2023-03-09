@@ -6,18 +6,21 @@ OffBoardPositionNode::OffBoardPositionNode() : Node("offboard_position_control")
     this->declare_parameter("air_line_initial_angle", 0.00);
     this->declare_parameter("air_line_radius", 2.00);
     this->declare_parameter("air_line_angular_velocity", 1.00);
+    this->declare_parameter("air_line_height", 1.00);
     this->declare_parameter("subscribe_namespace", "/mavros/uas_1");
 
     air_line_dt = this->get_parameter("air_line_dt").get_parameter_value().get<double>();
     air_line_initial_angle = this->get_parameter("air_line_initial_angle").get_parameter_value().get<double>();
     air_line_radius = this->get_parameter("air_line_radius").get_parameter_value().get<double>();
     air_line_angular_velocity = this->get_parameter("air_line_angular_velocity").get_parameter_value().get<double>();
+    air_line_height = this->get_parameter("air_line_height").get_parameter_value().get<double>();
     subscribeNamespace = this->get_parameter("subscribe_namespace").get_parameter_value().get<std::string>();
-
+    
     RCLCPP_INFO(this->get_logger(), "air line dt (control timer period) (s) : %lf", air_line_dt);
     RCLCPP_INFO(this->get_logger(), "air line initial angle : %lf", air_line_initial_angle);
     RCLCPP_INFO(this->get_logger(), "air line radius : %lf", air_line_radius);
     RCLCPP_INFO(this->get_logger(), "air line angular velocity (timer period) : %lf", air_line_angular_velocity);
+    RCLCPP_INFO(this->get_logger(), "air line height : %lf", air_line_height);
     RCLCPP_INFO(this->get_logger(), "subscribe namespace : %s", subscribeNamespace.c_str());
 
     air_line_angle = air_line_initial_angle;
@@ -134,7 +137,7 @@ void OffBoardPositionNode::timer_callback()
     geometry_msgs::msg::PoseStamped pose;
     pose.pose.position.x = air_line_radius * cos(air_line_angle);
     pose.pose.position.y = air_line_radius * sin(air_line_angle);
-    pose.pose.position.z = 2;
+    pose.pose.position.z = air_line_height;
     air_line_angle = air_line_angle + air_line_angular_velocity * air_line_dt;
     local_pos_pub->publish(pose);
 }
