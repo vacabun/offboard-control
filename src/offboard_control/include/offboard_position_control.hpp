@@ -32,7 +32,7 @@ private:
     double air_line_angle;
     double air_line_radius;
     double air_line_angular_velocity;
-    doubel air_line_height;
+    double air_line_height;
 };
 
 #endif
