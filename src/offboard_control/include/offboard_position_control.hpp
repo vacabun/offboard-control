@@ -1,9 +1,8 @@
-#ifndef _UWB_SIMULATION_
-#define _UWB_SIMULATION_
+#ifndef _OFFBOARD_POSITION_CONTROL_HPP_
+#define _OFFBOARD_POSITION_CONTROL_HPP_
 
 #include "rclcpp/rclcpp.hpp"
 #include <string>
-#include "rclcpp/rclcpp.hpp"
 #include <mavros_msgs/msg/state.hpp>
 #include <mavros_msgs/srv/command_bool.hpp>
 #include <mavros_msgs/srv/set_mode.hpp>

@@ -12,6 +12,7 @@
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
+        "*.ipp": "cpp",
         "any": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -25,6 +26,7 @@
         "complex": "cpp",
         "concepts": "cpp",
         "condition_variable": "cpp",
+        "coroutine": "cpp",
         "cstdint": "cpp",
         "deque": "cpp",
         "forward_list": "cpp",
@@ -46,6 +48,7 @@
         "random": "cpp",
         "ratio": "cpp",
         "regex": "cpp",
+        "source_location": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
@@ -74,10 +77,9 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
+        "valarray": "cpp",
         "variant": "cpp",
-        "*.ipp": "cpp",
-        "coroutine": "cpp",
-        "source_location": "cpp",
-        "valarray": "cpp"
+        "hash_map": "cpp",
+        "hash_set": "cpp"
     }
 }
