@@ -66,7 +66,7 @@ void VisualizerNode::timer_callback()
     velocity_msg.action = visualization_msgs::msg::Marker::ADD;
     velocity_msg.header.frame_id = "map";
     velocity_msg.ns = "arrow";
-    velocity_msg.id = id;
+    velocity_msg.id = 1;
     velocity_msg.type = visualization_msgs::msg::Marker::ARROW;
     velocity_msg.scale.x = 0.1;
     velocity_msg.scale.y = 0.2;
