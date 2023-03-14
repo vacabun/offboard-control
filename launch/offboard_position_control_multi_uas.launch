@@ -9,11 +9,11 @@
             <arg name="air_line_initial_angle" value="0.00" />
             <arg name="air_line_radius" value="2.00" />
             <arg name="air_line_angular_velocity" value="1.00" />
-            <arg name="air_line_height" value="1.00" />
+            <arg name="air_line_height" value="5.00" />
             <arg name="subscribe_namespace" value="$(eval ' \'/mavros/uas_\' + \'$(var id)\' ')" />
         </include>
     </group>
-    <group>
+    <!-- <group>
         <arg name="id" default="2" />
         <include file="$(find-pkg-share offboard_control)/launch/offboard_position_control.launch">
             <arg name="namespace"
@@ -25,6 +25,6 @@
             <arg name="air_line_height" value="1.00" />
             <arg name="subscribe_namespace" value="$(eval ' \'/mavros/uas_\' + \'$(var id)\' ')" />
         </include>
-    </group>
+    </group> -->
 </launch>
     

@@ -16,10 +16,10 @@ VisualizerNode::VisualizerNode() : Node("px4_visualizer")
 
     velocity_sub =
         this->create_subscription<geometry_msgs::msg::TwistStamped>(
-            velocity_topic_name, 10, std::bind(&VisualizerNode::velocity_cb, this, std::placeholders::_1));
+            velocity_topic_name, rclcpp::QoS(10).best_effort(), std::bind(&VisualizerNode::velocity_cb, this, std::placeholders::_1));
     local_position_sub =
         this->create_subscription<geometry_msgs::msg::PoseStamped>(
-            local_position_topic_name, 10, std::bind(&VisualizerNode::local_position_cb, this, std::placeholders::_1));
+            local_position_topic_name, rclcpp::QoS(10).best_effort(), std::bind(&VisualizerNode::local_position_cb, this, std::placeholders::_1));
     setpoint_sub =
         this->create_subscription<geometry_msgs::msg::PoseStamped>(
             setpoint_topic_name, 10, std::bind(&VisualizerNode::setpoint_cb, this, std::placeholders::_1));
@@ -32,6 +32,11 @@ VisualizerNode::VisualizerNode() : Node("px4_visualizer")
     std::string path_publisher_topic_name = "/px4_visualizer/" + vehicle_name + "/path";
     std::string setpoint_path_publisher_topic_name = "/px4_visualizer/" + vehicle_name + "/setpoint_path";
     std::string velocity_publisher_topic_name = "/px4_visualizer/" + vehicle_name + "/velocity";
+
+    RCLCPP_INFO(this->get_logger(), "pose publisher topic name: %s", pose_publisher_topic_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "path publisher topic name: %s", path_publisher_topic_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "setpoint path publisher topic name: %s", setpoint_path_publisher_topic_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "velocity publisher topic name: %s", velocity_publisher_topic_name.c_str());
 
     pose_pub =
         this->create_publisher<geometry_msgs::msg::PoseStamped>(pose_publisher_topic_name, 10);
@@ -50,10 +55,12 @@ VisualizerNode::VisualizerNode() : Node("px4_visualizer")
 
     path_msg.header.frame_id = "map";
     setpoint_path_msg.header.frame_id = "map";
+    local_position.header.frame_id = "map";
 }
 
 void VisualizerNode::timer_callback()
 {
+
     pose_pub->publish(local_position);
 
     path_msg.poses.push_back(local_position);
@@ -92,10 +99,12 @@ void VisualizerNode::local_position_cb(const geometry_msgs::msg::PoseStamped msg
 {
     local_position = msg;
 }
+
 void VisualizerNode::setpoint_cb(const geometry_msgs::msg::PoseStamped msg)
 {
     set_position = msg;
 }
+
 void VisualizerNode::velocity_cb(const geometry_msgs::msg::TwistStamped msg)
 {
     velocity = msg;

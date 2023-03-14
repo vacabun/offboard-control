@@ -14,10 +14,10 @@ public:
     VisualizerNode();
 
 private:
-    void VisualizerNode::velocity_cb(const geometry_msgs::msg::TwistStamped msg);
-    void VisualizerNode::local_position_cb(const geometry_msgs::msg::PoseStamped msg);
-    void VisualizerNode::setpoint_cb(const geometry_msgs::msg::PoseStamped msg);
-    void VisualizerNode::timer_callback();
+    void velocity_cb(const geometry_msgs::msg::TwistStamped msg);
+    void local_position_cb(const geometry_msgs::msg::PoseStamped msg);
+    void setpoint_cb(const geometry_msgs::msg::PoseStamped msg);
+    void timer_callback();
 
     std::string subscribe_namespace;
     std::string vehicle_name;

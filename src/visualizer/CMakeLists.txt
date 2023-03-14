@@ -20,11 +20,12 @@ find_package(ament_index_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(mavros REQUIRED)
 find_package(mavros_msgs REQUIRED)
-
+find_package(visualization_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 add_executable(visualizer 
   src/visualizer.cpp)
 target_include_directories(visualizer PUBLIC include)
-ament_target_dependencies(visualizer rclcpp ament_index_cpp mavros mavros_msgs)
+ament_target_dependencies(visualizer rclcpp ament_index_cpp mavros mavros_msgs visualization_msgs nav_msgs)
 
 install(TARGETS visualizer DESTINATION lib/${PROJECT_NAME})
 
